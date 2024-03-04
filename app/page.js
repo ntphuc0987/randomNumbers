@@ -9,12 +9,10 @@ export default function Home() {
 
   const [clickCount, setClickCount] = useState(0);
 
- 
-
   useEffect(() => {
     const intervalId = setInterval(() => {
       const now = new Date();
-      const formattedDate = `${now.getDate()}/${now.getMonth()}/${now.getFullYear()}`;
+      const formattedDate = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
       setCurrentDate(formattedDate);
     }, 1000);
 
@@ -58,16 +56,21 @@ export default function Home() {
         {numberGroups.map((group, index) => (
           <li
             key={index}
-            className="p-5 w-full sm:w-6/12 md:w-3/12 text-center h-[150px]"
+            className="p-5 w-full sm:w-6/12 md:w-3/12 text-center "
           >
-            <div className="flex text-xl relative flex-col items-center justify-center m-2 border border-slate-500 mb-2 w-full h-full rounded">
-              {/*Group {index + 1}:*/} {group.join(", ")}
+            <div className="flex text-xl relative flex-col items-center justify-center m-2 border border-slate-500 mb-2 w-full h-full rounded shadow-sm">
+              {/*Group {index + 1}:*/} {/*group.join(", ")*/}
+              <div className="flex w-full justify-center items-center mt-5">
+              {group.map((number, subIndex) => (
+               <span key={subIndex} className="border first:rounded-l last:rounded-r border-slate-500 p-2 block text-2xl font-bold">{number}</span>
+              ))}
+              </div>
               <br />
               <span className="bg-zinc-400 text-white rounded p-1 text-xs my-2">
                 {currentDate}
               </span>
               <span className="bg-yellow-400  text-gray-900 rounded p-1 text-xs my-2 absolute md:bottom-0  md:top-auto top-0 left-3">
-                Lượt: {clickCount} 
+                Lượt: {clickCount}
               </span>
             </div>
           </li>
