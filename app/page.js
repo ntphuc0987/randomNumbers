@@ -67,7 +67,7 @@ export default function Home() {
                 {currentDate}
               </span>
               <span className="bg-yellow-400  text-gray-900 rounded p-1 text-xs my-2 absolute md:bottom-0  md:top-auto top-0 left-3">
-                Lượt: {clickCount}
+                Lượt: {clickCount} 
               </span>
             </div>
           </li>
