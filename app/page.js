@@ -7,6 +7,10 @@ export default function Home() {
   const [currentDate, setCurrentDate] = useState("");
   const [numberGroups, setNumberGroups] = useState([]);
 
+  const [clickCount, setClickCount] = useState(0);
+
+ 
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       const now = new Date();
@@ -27,6 +31,7 @@ export default function Home() {
     }
 
     setNumberGroups(groupedNumbers);
+    setClickCount(clickCount + 1);
   };
 
   // Fisher-Yates shuffle algorithm
@@ -55,11 +60,14 @@ export default function Home() {
             key={index}
             className="p-5 w-full sm:w-6/12 md:w-3/12 text-center h-[150px]"
           >
-            <div className="flex text-xl  flex-col items-center justify-center m-2 border border-slate-500 mb-2 w-full h-full rounded">
+            <div className="flex text-xl relative flex-col items-center justify-center m-2 border border-slate-500 mb-2 w-full h-full rounded">
               {/*Group {index + 1}:*/} {group.join(", ")}
               <br />
               <span className="bg-zinc-400 text-white rounded p-1 text-xs my-2">
                 {currentDate}
+              </span>
+              <span className="bg-yellow-400  text-gray-900 rounded p-1 text-xs my-2 absolute md:bottom-0  md:top-auto top-0 left-3">
+                Lượt: {clickCount}
               </span>
             </div>
           </li>
