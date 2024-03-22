@@ -4,12 +4,22 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const now = new Date();
-
+  const [currentDate, setCurrentDate] = useState("");
   const [numberGroups, setNumberGroups] = useState([]);
 
   const [clickCount, setClickCount] = useState(0);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const now = new Date();
+      const formattedDate = `${now.getDate()}/${
+        now.getMonth() + 1
+      }/${now.getFullYear()}`;
+      setCurrentDate(formattedDate);
+    }, 1000);
 
+    return () => clearInterval(intervalId);
+  }, []);
 
   const generateRandomNumbers = () => {
     const numbers = Array.from({ length: 60 }, (_, i) => i + 1);
@@ -50,16 +60,16 @@ export default function Home() {
             key={index}
             className="p-5 w-full sm:w-6/12 md:w-3/12 text-center "
           >
-            <div className="flex gap-4 text-xl relative flex-col items-center justify-center border border-slate-500  w-full h-full rounded">
-            
-              
+            <div className="flex text-xl relative flex-col items-center justify-center border border-slate-500  w-full h-full rounded">
+              {/*Group {index + 1}:*/} {/*group.join(", ")*/}
               <div className="flex justify-between w-full">
                 <span className="bg-zinc-400 text-white rounded p-1 text-xs ">
-                 
-                  Vòng Loại ................
+                  {currentDate}
+                </span>
+                <span className="bg-yellow-400  text-gray-900 rounded p-1 text-xs ">
+                  Lượt: {clickCount}
                 </span>
               </div>
-
               <div className="flex w-full justify-center items-center mb-2">
                 {group.map((number, subIndex) => (
                   <span
@@ -68,7 +78,6 @@ export default function Home() {
                   >
                     {number}
                   </span>
-
                 ))}
               </div>
             </div>
