@@ -64,7 +64,7 @@ export default function Home() {
                 {group.map((number, subIndex) => (
                   <span
                     key={subIndex}
-                    className="border first:rounded-l last:rounded-r border-slate-500 p-2 block text-2xl font-bold"
+                    className="border first:rounded-l last:rounded-r border-slate-500 p-2 block text-5xl font-bold"
                   >
                     {number}
                   </span>
